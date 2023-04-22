@@ -18,14 +18,37 @@ import io.restassured.response.Response;
  */
 public class UsersTest_TDD {
 	
+	/**
+	 * Test Data Driven Test Execution.
+	 * Here we have got 5 different data payload supplied from Dataproviders
+	 * Using Faker to generate data at Run Time
+	 * @param data
+	 */
 	@Test (priority=1, dataProvider ="payloads" , dataProviderClass = DataProviderUtils.class )
-	public void createUser(User data) {
+	public void createUser_UsingDataProvider_PojoPayload_Faker(User data) {
 		
 		System.out.println("Creating User with User Name: "+data.getUsername());
 		Response res = UserEndpoints.createUser(data);
 		res.then().log().all();
 		Assert.assertEquals(res.statusCode(), 200);
 	}
+	
+	/**
+	 * Test Data Driven Test Execution
+	 * Here we read Application Test Data from Excel from resources
+	 * As many rows supplied this test will repeat those many times
+	 * @param data
+	 */
+	@Test (priority=2, dataProvider ="payLoadFromExcel" , dataProviderClass = DataProviderUtils.class )
+	public void createUser_UsingDataProvider_PojoPayload_UsingExcel(User data) {
+		
+		System.out.println("Creating User with User Name: "+data.getUsername());
+		Response res = UserEndpoints.createUser(data);
+		res.then().log().all();
+		Assert.assertEquals(res.statusCode(), 200);
+	}
+	
+	
 	
 
 }

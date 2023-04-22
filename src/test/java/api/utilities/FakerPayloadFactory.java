@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 
 import api.payload.User;
 
-public class PayloadUtil {
+public class FakerPayloadFactory {
 
 	public static User getUserPayload() {
 		
