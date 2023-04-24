@@ -1,9 +1,6 @@
 package api.utilities;
 
-import java.util.HashMap;
-
 import org.testng.annotations.DataProvider;
-
 import api.payload.User;
 
 public class DataProviderUtils {
@@ -32,7 +29,7 @@ public class DataProviderUtils {
 	@DataProvider(name = "payLoadFromExcel")
 	public User[] getMultiplePayloadsFromExcel() {
 		// Create Excel Util Object
-		ExcelUtil excelObj = new ExcelUtil(".\\resources\\UserData.xlsx");
+		ExcelUtil excelObj = new ExcelUtil(ProjectConstantProperties.USER_DATA_EXCEL);
 		// Identify Total Data Rows Count - Since Excel Row Index starts from Zero we
 		// need to less the count by 1
 		int dataRowCount = excelObj.getRowCount("user") - 1;
